@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"log"
 	"os"
 	"path/filepath"
@@ -22,6 +23,10 @@ func main() {
 	configPath := filepath.Join(homeDir, ".config", "kaiten-wall", "config.toml")
 
 	if err = defaults.FirstLaunch(configDir, configPath); err != nil {
+		if errors.Is(err, defaults.ErrFirstLaunch) {
+			log.Println(err)
+			os.Exit(0)
+		}
 		log.Fatal(err)
 	}
 

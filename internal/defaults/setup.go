@@ -2,6 +2,7 @@ package defaults
 
 import (
 	_ "embed"
+	"errors"
 	"fmt"
 	"os"
 
@@ -10,6 +11,8 @@ import (
 
 //go:embed config.example.toml
 var defaultConfig []byte
+
+var ErrFirstLaunch = errors.New("first launch detected, please configure before running again")
 
 func FirstLaunch(configDir string, configPath string) error {
 	if err := fs.IsFileExist(configPath); err == nil {
@@ -24,5 +27,5 @@ func FirstLaunch(configDir string, configPath string) error {
 		return fmt.Errorf("failed to write default config: %w", err)
 	}
 
-	return nil
+	return ErrFirstLaunch
 }
