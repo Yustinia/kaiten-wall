@@ -7,6 +7,7 @@ import (
 
 	"github.com/Yustinia/kaiten-wall/internal/api"
 	"github.com/Yustinia/kaiten-wall/internal/config"
+	"github.com/Yustinia/kaiten-wall/internal/daemon"
 	"github.com/Yustinia/kaiten-wall/internal/download"
 	"github.com/Yustinia/kaiten-wall/internal/fs"
 )
@@ -38,5 +39,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	log.Printf("Wallpaper Location: %s", wallLocation)
+	err = daemon.RunAwww(settings.General.UseDaemon, wallLocation, &settings.Awww)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
