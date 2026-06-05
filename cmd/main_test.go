@@ -18,7 +18,7 @@ func TestMain(t *testing.T) {
 		t.Fatalf("project root not found: %v", err)
 	}
 
-	configPath := filepath.Join(projDir, "..", "config.example.toml")
+	configPath := filepath.Join(projDir, "..", "internal", "defaults", "config.example.toml")
 	if err = fs.IsFileExist(configPath); err != nil {
 		t.Fatalf("config not found: %v", err)
 	}

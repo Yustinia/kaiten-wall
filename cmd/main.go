@@ -8,8 +8,8 @@ import (
 	"github.com/Yustinia/kaiten-wall/internal/api"
 	"github.com/Yustinia/kaiten-wall/internal/config"
 	"github.com/Yustinia/kaiten-wall/internal/daemon"
+	"github.com/Yustinia/kaiten-wall/internal/defaults"
 	"github.com/Yustinia/kaiten-wall/internal/download"
-	"github.com/Yustinia/kaiten-wall/internal/fs"
 )
 
 func main() {
@@ -18,9 +18,11 @@ func main() {
 		log.Fatalf("home not found: %v", err)
 	}
 
+	configDir := filepath.Join(homeDir, ".config", "kaiten-wall")
 	configPath := filepath.Join(homeDir, ".config", "kaiten-wall", "config.toml")
-	if err = fs.IsFileExist(configPath); err != nil {
-		log.Fatalf("config not found: %v", err)
+
+	if err = defaults.FirstLaunch(configDir, configPath); err != nil {
+		log.Fatal(err)
 	}
 
 	settings, err := config.ParseSettings(configPath)
