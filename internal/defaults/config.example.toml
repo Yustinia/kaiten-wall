@@ -17,27 +17,34 @@ transition_wave = "20,20"
 wallhaven_api = "api_key"
 
 [wallhaven]
-# query filters the search that matches query
+# Filters results by search term. Leave empty for no filter.
 query = ""
-# categories filters search
-# "general:100", "anime:010", "people:001"
+
+# Filters results by category. Each digit is a toggle (1=on, 0=off).
+# Position: general | anime | people
+# Example: "110" returns general and anime, excluding people.
 categories = "010"
-# purity filters content rating
-# "sfw:100", "sketchy:010", "nsfw:001"
-# nsfw rating needs a valid api_key
+
+# Filters results by content rating. Each digit is a toggle (1=on, 0=off).
+# Position: sfw | sketchy | nsfw
+# Note: nsfw requires a valid API key in [client].
 purity = "110"
-# sorting filters how the wallpapers are sorted
-# "date_added", "relevance", "random", "views", "favorites", "toplist"
+
+# Controls how results are sorted.
+# Values: "date_added", "relevance", "random", "views", "favorites", "toplist"
 sorting = "random"
-# order filters how wallpaper appear in order
-# "desc" and "asc"
+
+# Controls sort direction.
+# Values: "desc", "asc"
 order = "desc"
-# at_least filters the minimum resolution of wallpapers to be fetched
-# accepts only one value in "WIDTHxHEIGHT"
+
+# Minimum resolution filter. Format: "WIDTHxHEIGHT"
 at_least = "1920x1080"
-# ratios filters the fetched wallpapers to a list of acceptable aspect ratios
-# accepts a list separated by commas: "16x9,16x10..."
+
+# Filters by aspect ratio. Accepts comma-separated values.
+# Example: "16x9,16x10"
 ratios = "16x9"
-# seed specifies the randomness acceping alphanumeric values
-# only if sorting is set to "random"
+
+# Randomness seed. Accepts alphanumeric values.
+# Only applies when sorting is set to "random".
 seed = "hdks23"
