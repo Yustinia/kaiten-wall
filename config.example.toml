@@ -1,0 +1,14 @@
+[general]
+use_daemon = "awww"
+default_path = "/tmp"
+
+[awww]
+filter = "Lanczos3"
+transition_type = "simple"
+transition_step = 90
+transition_duration = 3
+transition_fps = 60
+transition_angle = 45
+transition_pos = "center"
+transition_bezier = "0.54,0,0.34,0.99"
+transition_wave = "20,20"
