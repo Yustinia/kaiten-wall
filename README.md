@@ -9,7 +9,7 @@ Written in Golang.
 - Wallpaper daemon (awww, \*swaybg, \*hyprpaper)
 - Wayland compositor (niri, hyprland, mangowc)
 
-> Note: dependenices tagged as '\*' are planned to be implemented
+> Note: dependencies tagged as '\*' are planned to be implemented
 
 ## Build
 
@@ -22,6 +22,8 @@ go get github.com/Yustinia/gopaper
 # toml parsing
 go get github.com/BurntSushi/toml
 ```
+
+Otherwise, simply do `go mod tidy` to automatically handle build dependencies
 
 ### Just
 
@@ -37,6 +39,10 @@ just build
 go build -o kaiten ./cmd
 ```
 
+## Install
+
+> TODO
+
 ## Features
 
 - Fetch a random wallpaper and apply it
@@ -48,4 +54,6 @@ go build -o kaiten ./cmd
 ## To Do
 
 - Expand wallpaper daemon selection
+  - swaybg
+  - hyprpaper
 - Expand wallpaper sources
