@@ -1,8 +1,10 @@
 package config
 
 type ConfigModel struct {
-	General GeneralModel `toml:"general"`
-	Awww    AwwwModel    `toml:"awww"`
+	General      GeneralModel    `toml:"general"`
+	ClientParams Client          `toml:"client"`
+	Wallhaven    WallhavenParams `toml:"wallhaven"`
+	Awww         AwwwModel       `toml:"awww"`
 }
 
 type GeneralModel struct {
@@ -20,4 +22,20 @@ type AwwwModel struct {
 	TransitionPOS      string `toml:"transition_pos"`
 	TransitionBezier   string `toml:"transition_bezier"`
 	TransitionWave     string `toml:"transition_wave"`
+}
+
+type Client struct {
+	APIKey string `toml:"api_key"`
+}
+
+type WallhavenParams struct {
+	Query      string `toml:"query"`
+	Categories string `toml:"categories"`
+	Purity     string `toml:"purity"`
+	Sorting    string `toml:"sorting"`
+	Order      string `toml:"order"`
+	AtLeast    string `toml:"at_least"`
+	Resolution string `toml:"resolution"`
+	Ratios     string `toml:"ratios"`
+	Seed       string `toml:"seed"`
 }

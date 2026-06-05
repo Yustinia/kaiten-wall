@@ -6,6 +6,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/Yustinia/kaiten-wall/internal/api"
 	"github.com/Yustinia/kaiten-wall/internal/config"
 	"github.com/Yustinia/kaiten-wall/internal/fs"
 )
@@ -26,5 +27,11 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Printf("%+v", settings)
+	result, err := api.FetchWallpapers(&settings)
+	if err != nil {
+		log.Fatal(err)
+	}
+	selectedWall := api.SelectRandomWall(result)
+
+	fmt.Println(selectedWall)
 }

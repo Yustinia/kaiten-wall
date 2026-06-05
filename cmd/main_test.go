@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
 
+	"github.com/Yustinia/kaiten-wall/internal/api"
 	"github.com/Yustinia/kaiten-wall/internal/config"
 	"github.com/Yustinia/kaiten-wall/internal/fs"
 )
@@ -26,5 +26,11 @@ func TestMain(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	fmt.Printf("%+v", settings)
+	result, err := api.FetchWallpapers(&settings)
+	if err != nil {
+		t.Fatal(err)
+	}
+	selectedWall := api.SelectRandomWall(result)
+
+	t.Logf("Wallpaper: %s", selectedWall)
 }
