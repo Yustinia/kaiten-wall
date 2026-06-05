@@ -1,0 +1,51 @@
+# kaiten-wall
+
+Inspired from the kaiten sushi (conveyer belt sushi); selects a random wallpaper from Wallhaven and applies it as the wallpaper.
+
+Written in Golang.
+
+## Dependencies
+
+- Wallpaper daemon (awww, \*swaybg, \*hyprpaper)
+- Wayland compositor (niri, hyprland, mangowc)
+
+> Note: dependenices tagged as '\*' are planned to be implemented
+
+## Build
+
+Ensure that you have the following:
+
+```bash
+# wallhaven API wrapper
+go get github.com/Yustinia/gopaper
+
+# toml parsing
+go get github.com/BurntSushi/toml
+```
+
+### Just
+
+Ensure that you have `just` installed through your package manager
+
+```bash
+just build
+```
+
+### Manual
+
+```bash
+go build -o kaiten ./cmd
+```
+
+## Features
+
+- Fetch a random wallpaper and apply it
+- Filter wallpapers through the config toml file
+- Change the default output path for wallpapers
+- Configure how wallpapers transition
+- Change which wallpaper daemon to use
+
+## To Do
+
+- Expand wallpaper daemon selection
+- Expand wallpaper sources
