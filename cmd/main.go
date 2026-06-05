@@ -1,13 +1,13 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"os"
 	"path/filepath"
 
 	"github.com/Yustinia/kaiten-wall/internal/api"
 	"github.com/Yustinia/kaiten-wall/internal/config"
+	"github.com/Yustinia/kaiten-wall/internal/download"
 	"github.com/Yustinia/kaiten-wall/internal/fs"
 )
 
@@ -33,5 +33,10 @@ func main() {
 	}
 	selectedWall := api.SelectRandomWall(result)
 
-	fmt.Println(selectedWall)
+	wallLocation, err := download.DownloadWall(selectedWall, settings.General.DefaultPath)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("Wallpaper Location: %s", wallLocation)
 }

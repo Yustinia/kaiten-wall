@@ -7,6 +7,7 @@ import (
 
 	"github.com/Yustinia/kaiten-wall/internal/api"
 	"github.com/Yustinia/kaiten-wall/internal/config"
+	"github.com/Yustinia/kaiten-wall/internal/download"
 	"github.com/Yustinia/kaiten-wall/internal/fs"
 )
 
@@ -32,5 +33,10 @@ func TestMain(t *testing.T) {
 	}
 	selectedWall := api.SelectRandomWall(result)
 
-	t.Logf("Wallpaper: %s", selectedWall)
+	wallLocation, err := download.DownloadWall(selectedWall, settings.General.DefaultPath)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Logf("Wallpaper Location: %s", wallLocation)
 }

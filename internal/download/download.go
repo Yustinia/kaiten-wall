@@ -6,11 +6,9 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
-
-	"github.com/Yustinia/kaiten-wall/internal/config"
 )
 
-func DownloadWall(wallpaper string, settings config.ConfigModel) (string, error) {
+func DownloadWall(wallpaper string, wallOutPath string) (string, error) {
 	resp, err := http.Get(wallpaper)
 	if err != nil {
 		return "", fmt.Errorf("request failed: %w", err)
@@ -18,11 +16,11 @@ func DownloadWall(wallpaper string, settings config.ConfigModel) (string, error)
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return "", fmt.Errorf("unexpected status: %w", err)
+		return "", fmt.Errorf("unexpected status: %d", resp.StatusCode)
 	}
 
 	ext := filepath.Ext(wallpaper)
-	outPath := filepath.Join(settings.General.DefaultPath, "wallhaven", ext)
+	outPath := filepath.Join(wallOutPath, fmt.Sprintf("wallhaven%s", ext))
 
 	file, err := os.Create(outPath)
 	if err != nil {
