@@ -1,4 +1,4 @@
-# kaiten-wall
+# kaiten-wall (WIP)
 
 Inspired from the kaiten sushi (conveyer belt sushi); selects a random wallpaper from Wallhaven and applies it as the wallpaper.
 
