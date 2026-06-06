@@ -10,6 +10,7 @@ import (
 	"github.com/Yustinia/kaiten-wall/internal/daemon"
 	"github.com/Yustinia/kaiten-wall/internal/download"
 	"github.com/Yustinia/kaiten-wall/internal/fs"
+	"github.com/Yustinia/kaiten-wall/internal/theming"
 )
 
 func TestMain(t *testing.T) {
@@ -43,8 +44,25 @@ func TestMain(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	err = daemon.RunAwww(settings.General.UseDaemon, wallLocation, &settings.Awww)
+	switch settings.General.UseDaemon {
+	case "awww":
+		err = daemon.RunAwww(wallLocation, &settings.Awww)
+	default:
+		t.Fatalf("unknown daemon: %q", settings.General.UseDaemon)
+	}
 	if err != nil {
 		t.Fatal(err)
+	}
+
+	if settings.General.UseThemer != "" {
+		switch settings.General.UseThemer {
+		case "matugen":
+			err = theming.ApplyMatugen(wallLocation, &settings.Matugen)
+		default:
+			t.Fatalf("unknown themer: %q", settings.General.UseThemer)
+		}
+		if err != nil {
+			t.Fatal(err)
+		}
 	}
 }

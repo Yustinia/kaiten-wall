@@ -50,13 +50,23 @@ func main() {
 		log.Fatal(err)
 	}
 
-	err = daemon.RunAwww(settings.General.UseDaemon, wallLocation, &settings.Awww)
+	switch settings.General.UseDaemon {
+	case "awww":
+		err = daemon.RunAwww(wallLocation, &settings.Awww)
+	default:
+		log.Fatalf("unknown daemon: %q", settings.General.UseDaemon)
+	}
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	if settings.General.UseMatugen {
-		err = theming.ApplyMatugen(wallLocation, &settings.Matugen)
+	if settings.General.UseThemer != "" {
+		switch settings.General.UseThemer {
+		case "matugen":
+			err = theming.ApplyMatugen(wallLocation, &settings.Matugen)
+		default:
+			log.Fatalf("unknown themer: %q", settings.General.UseThemer)
+		}
 		if err != nil {
 			log.Fatal(err)
 		}

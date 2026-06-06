@@ -43,8 +43,8 @@ func buildAwwwFlags(s *config.AwwwModel) []string {
 	return awwwFlags
 }
 
-func RunAwww(daemonInUse string, wallPath string, daemonSet *config.AwwwModel) error {
-	if err := fs.IsCommandExist(daemonInUse); err != nil {
+func RunAwww(wallPath string, daemonSet *config.AwwwModel) error {
+	if err := fs.IsCommandExist("awww"); err != nil {
 		return err
 	}
 
@@ -54,7 +54,7 @@ func RunAwww(daemonInUse string, wallPath string, daemonSet *config.AwwwModel) e
 	}
 	awwwFlags = append(awwwFlags, buildAwwwFlags(daemonSet)...)
 
-	cmd := exec.Command(daemonInUse, awwwFlags...)
+	cmd := exec.Command("awww", awwwFlags...)
 
 	cmd.Stdout = os.Stdout
 	cmd.Stderr = os.Stderr

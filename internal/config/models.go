@@ -10,7 +10,7 @@ type ConfigModel struct {
 
 type GeneralModel struct {
 	UseDaemon   string `toml:"use_daemon"`
-	UseMatugen  bool   `toml:"use_matugen"`
+	UseThemer   string `toml:"use_themer"`
 	DefaultPath string `toml:"default_path"`
 }
 
