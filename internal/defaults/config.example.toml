@@ -20,7 +20,7 @@ transition_type = "simple"
 # How fast the transition approaches the new image
 # Larger values are faster and abrupt
 # Smaller values are slower and seamless
-transition_step = 90
+transition_step = 2
 
 # How long the transition takes in seconds
 # Does not work with transition_type "simple"
@@ -74,11 +74,11 @@ at_least = "1920x1080"
 
 # Filters by exact resolution. Format: "WIDTHxHEIGHT"
 # Accepts comma-separated values or one value
-resolution = "1920x1080"
+resolution = "1920x1080,2560x1440,3840x2160,1920x1200,2560x1600,3840x2400,2560x1080,2440x1440,3840x1600"
 
 # Filters by aspect ratio. Accepts comma-separated values.
 # Example: "16x9,16x10"
-ratios = "16x9"
+ratios = "16x9,21x9,16x10,32x9,48x9"
 
 # Randomness seed. Accepts alphanumeric values.
 # Only applies when sorting is set to "random".
