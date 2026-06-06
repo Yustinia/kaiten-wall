@@ -5,6 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"os"
+
+	"github.com/Yustinia/kaiten-wall/internal/fs"
 )
 
 //go:embed config.example.toml
@@ -13,7 +15,7 @@ var defaultConfig []byte
 var ErrFirstLaunch = errors.New("first launch detected, please configure before running again")
 
 func FirstLaunch(configDir string, configPath string) error {
-	if _, err := os.Stat(configPath); err == nil {
+	if err := fs.IsFileExist(configPath); err == nil {
 		return nil
 	}
 
