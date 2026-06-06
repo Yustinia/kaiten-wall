@@ -69,6 +69,10 @@ order = "desc"
 # Minimum resolution filter. Format: "WIDTHxHEIGHT"
 at_least = "1920x1080"
 
+# Filters by exact resolution. Format: "WIDTHxHEIGHT"
+# Accepts comma-separated values or one value
+resolution = "1920x1080"
+
 # Filters by aspect ratio. Accepts comma-separated values.
 # Example: "16x9,16x10"
 ratios = "16x9"
