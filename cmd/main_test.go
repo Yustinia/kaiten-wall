@@ -32,7 +32,11 @@ func TestMain(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	selectedWall := api.SelectRandomWall(result)
+
+	selectedWall, err := api.SelectRandomWall(result)
+	if err != nil {
+		t.Fatal(err)
+	}
 
 	wallLocation, err := download.DownloadWall(selectedWall, settings.General.DefaultPath)
 	if err != nil {

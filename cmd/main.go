@@ -39,7 +39,10 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	selectedWall := api.SelectRandomWall(result)
+	selectedWall, err := api.SelectRandomWall(result)
+	if err != nil {
+		log.Fatal(err)
+	}
 
 	wallLocation, err := download.DownloadWall(selectedWall, settings.General.DefaultPath)
 	if err != nil {

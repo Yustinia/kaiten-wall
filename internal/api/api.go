@@ -1,12 +1,15 @@
 package api
 
 import (
+	"errors"
 	"fmt"
 	"math/rand"
 
 	"github.com/Yustinia/gopaper"
 	"github.com/Yustinia/kaiten-wall/internal/config"
 )
+
+var ErrNoWallpapers = errors.New("no wallpapers found")
 
 func buildSearchParams(settings *config.ConfigModel) gopaper.SearchParams {
 	w := settings.Wallhaven
@@ -37,10 +40,14 @@ func FetchWallpapers(settings *config.ConfigModel) (gopaper.SearchResponse, erro
 	return result, nil
 }
 
-func SelectRandomWall(result gopaper.SearchResponse) string {
+func SelectRandomWall(result gopaper.SearchResponse) (string, error) {
 	wallCount := len(result.Wallpapers)
+	if wallCount == 0 {
+		return "", ErrNoWallpapers
+	}
+
 	randIndex := rand.Intn(wallCount)
 	selectedWall := result.Wallpapers[randIndex]
 
-	return selectedWall.Path
+	return selectedWall.Path, nil
 }
