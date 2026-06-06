@@ -2,6 +2,9 @@
 # Define which wallpaper daemon to use
 use_daemon = "awww"
 
+# Define whether to use matugen integration
+use_matugen = false
+
 # Define where the wallpaper should save
 default_path = "/tmp"
 
