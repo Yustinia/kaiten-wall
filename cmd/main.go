@@ -53,4 +53,9 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	err = daemon.ApplyMatugen(wallLocation, &settings.Matugen)
+	if err != nil {
+		log.Fatal(err)
+	}
 }

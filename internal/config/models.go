@@ -1,10 +1,11 @@
 package config
 
 type ConfigModel struct {
-	General      GeneralModel    `toml:"general"`
-	ClientParams Client          `toml:"client"`
-	Wallhaven    WallhavenParams `toml:"wallhaven"`
-	Awww         AwwwModel       `toml:"awww"`
+	General      GeneralModel   `toml:"general"`
+	ClientParams Client         `toml:"client"`
+	Wallhaven    WallhavenModel `toml:"wallhaven"`
+	Awww         AwwwModel      `toml:"awww"`
+	Matugen      MatugenModel   `toml:"matugen"`
 }
 
 type GeneralModel struct {
@@ -28,7 +29,7 @@ type Client struct {
 	APIKey string `toml:"api_key"`
 }
 
-type WallhavenParams struct {
+type WallhavenModel struct {
 	Query      string `toml:"query"`
 	Categories string `toml:"categories"`
 	Purity     string `toml:"purity"`
@@ -38,4 +39,11 @@ type WallhavenParams struct {
 	Resolution string `toml:"resolution"`
 	Ratios     string `toml:"ratios"`
 	Seed       string `toml:"seed"`
+}
+
+type MatugenModel struct {
+	Scheme      string `toml:"scheme"`
+	Contrast    string `toml:"contrast"`
+	Mode        string `toml:"mode"`
+	SourceIndex string `toml:"source-color-index"`
 }
