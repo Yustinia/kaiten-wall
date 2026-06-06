@@ -101,3 +101,39 @@ mode = "light"
 # Recommended not to change unless you know what you are doing
 # 0 = chooses the most dominant color as the source, can vary between 0 to 4 (least dominant) but is not fixed
 source-color-index = "0"
+
+[wallust]
+# Define how to extract the colors from the image
+# Values: "full", "resized", "wal", "thumb", "thumb", "fastresize", "kmeans"
+backend = "full"
+
+# Define which color space of colors
+# Values: "lab", "labmixed", "lch", "lchmixed", "salience", "lchansi"
+colorspace = "lch"
+
+# Define fallback generation if failed
+# Values: "interpolate" and "complementary"
+fallback = "interpolate"
+
+# Define the color palette to use
+# Prefix dark: dark/16/comp/comp16
+# Prefix ansidark: ansidark/16
+# Prefix harddark: harddark/16/comp/comp16
+# Prefix saliencedark: saliencedark/16/balanced/balanced16/distributed/distributed16/low/low16
+# Prefix light: light/16/comp/comp16
+# Prefix softdark: softdark/16/comp/comp16
+# Prefix softlight: softlight/16/comp/comp16
+# Prefix saliencelight: saliencelight/16/balanced/balanced16/distributed/distributed16/low/low16
+palette = "dark16"
+
+# Set color saturation
+# Values: 1 - 100
+saturation = "1"
+
+# Set color threshold
+# Values: 1 - 100
+threshold = ""
+
+#  Enable/disable dynamic threshold
+# Doesn't work with manual threshold setting
+dynamic_threshold = true

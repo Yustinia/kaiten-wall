@@ -48,3 +48,13 @@ type MatugenModel struct {
 	Mode        string `toml:"mode"`
 	SourceIndex string `toml:"source-color-index"`
 }
+
+type WallustModel struct {
+	Backend          string `toml:"backend"`
+	Colorspace       string `toml:"colorspace"`
+	Fallback         string `toml:"fallback"`
+	Palette          string `toml:"palette"`
+	Saturation       string `toml:"saturation"`
+	Threshold        string `toml:"threshold"`
+	DynamicThreshold bool   `toml:"dynamic_threshold"`
+}
