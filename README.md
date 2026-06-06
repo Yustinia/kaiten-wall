@@ -41,7 +41,21 @@ go build -o kaiten ./cmd
 
 ## Install
 
-> TODO
+You can either install manually or using `just`
+
+### Just
+
+This builds and copies the executable to `~/.local/bin`
+
+```bash
+just install
+```
+
+### Manual
+
+First build the executable, reference the build chapter
+
+Then simply copy or move the executable to `~/.local/bin`
 
 ## Features
 

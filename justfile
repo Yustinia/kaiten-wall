@@ -12,5 +12,5 @@ build:
     @go build -o {{ outName }} {{ entryPoint }}
 
 install: build
-    @mv -v {{ outName }} {{ localBin }}
+    @cp -rv {{ outName }} {{ localBin }}
     @echo installed {{ outName }} to {{ localBin }}
