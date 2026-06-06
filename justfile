@@ -5,7 +5,7 @@ default:
     just --list
 
 run:
-    go run {{ entryPoint }}
+    @go run {{ entryPoint }}
 
 build:
-    go build -o {{ outName }} {{ entryPoint }}
+    @go build -o {{ outName }} {{ entryPoint }}

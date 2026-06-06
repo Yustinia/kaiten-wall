@@ -1,16 +1,44 @@
 [general]
+# Define which wallpaper daemon to use
 use_daemon = "awww"
+
+# Define where the wallpaper should save
 default_path = "/tmp"
 
 [awww]
+# Which filter to use when scaling images
+# Values: "Nearest", "Bilinear", "CatmullRom", "Mitchell", "Lanczos3"
 filter = "Lanczos3"
+
+# Set the type of transition
+# Values: "none", "simple", "fade", "left", "right", "top", "bottom", "wipe", "wave", "grow", "center", "any", "outer", "random"
 transition_type = "simple"
+
+# How fast the transition approaches the new image
+# Larger values are faster and abrupt
+# Smaller values are slower and seamless
 transition_step = 90
+
+# How long the transition takes in seconds
+# Does not work with transition_type "simple"
 transition_duration = 3
+
+# This should be self-explanatory
 transition_fps = 60
+
+# Used for transition_type "wipe" and "wave", controlling the angle
 transition_angle = 45
+
+# Used for transition_type "grow" and "outer", controlling the center of the circle
+# Values in Percent: "0.5,0.5" is 50% of width and 50% of height
+# Values in Pixels: "200,400" is 200px from the left and 400px from the bottom
+# Values in Alias: "center", "top", "left", "right", "bottom", "top-left", "top-right", "bottom-left", "bottom-right"
 transition_pos = "center"
+
+# Used for "fade" to control animation
 transition_bezier = "0.54,0,0.34,0.99"
+
+# Used for "wave" to control the width and height of the wave
 transition_wave = "20,20"
 
 [client]
