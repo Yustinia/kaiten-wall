@@ -18,17 +18,17 @@ func buildAwwwFlags(s *config.AwwwModel) []string {
 	if s.TransitionType != "" {
 		awwwFlags = append(awwwFlags, fmt.Sprintf("--transition-type=%s", s.TransitionType))
 	}
-	if s.TransitionStep != nil {
-		awwwFlags = append(awwwFlags, fmt.Sprintf("--transition-step=%d", *s.TransitionStep))
+	if s.TransitionStep != "" {
+		awwwFlags = append(awwwFlags, fmt.Sprintf("--transition-step=%s", s.TransitionStep))
 	}
-	if s.TransitionDuration != nil {
-		awwwFlags = append(awwwFlags, fmt.Sprintf("--transition-duration=%d", *s.TransitionDuration))
+	if s.TransitionDuration != "" {
+		awwwFlags = append(awwwFlags, fmt.Sprintf("--transition-duration=%s", s.TransitionDuration))
 	}
-	if s.TransitionFPS != nil {
-		awwwFlags = append(awwwFlags, fmt.Sprintf("--transition-fps=%d", *s.TransitionFPS))
+	if s.TransitionFPS != "" {
+		awwwFlags = append(awwwFlags, fmt.Sprintf("--transition-fps=%s", s.TransitionFPS))
 	}
-	if s.TransitionAngle != nil {
-		awwwFlags = append(awwwFlags, fmt.Sprintf("--transition-angle=%d", *s.TransitionAngle))
+	if s.TransitionAngle != "" {
+		awwwFlags = append(awwwFlags, fmt.Sprintf("--transition-angle=%s", s.TransitionAngle))
 	}
 	if s.TransitionPOS != "" {
 		awwwFlags = append(awwwFlags, fmt.Sprintf("--transition-pos=%s", s.TransitionPOS))

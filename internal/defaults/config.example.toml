@@ -20,17 +20,17 @@ transition_type = "simple"
 # How fast the transition approaches the new image
 # Larger values are faster and abrupt
 # Smaller values are slower and seamless
-transition_step = 2
+transition_step = "2"
 
 # How long the transition takes in seconds
 # Does not work with transition_type "simple"
-transition_duration = 3
+transition_duration = "3"
 
 # This should be self-explanatory
-transition_fps = 60
+transition_fps = "60"
 
 # Used for transition_type "wipe" and "wave", controlling the angle
-transition_angle = 45
+transition_angle = "45"
 
 # Used for transition_type "grow" and "outer", controlling the center of the circle
 # Values in Percent: "0.5,0.5" is 50% of width and 50% of height
