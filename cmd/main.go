@@ -11,6 +11,7 @@ import (
 	"github.com/Yustinia/kaiten-wall/internal/daemon"
 	"github.com/Yustinia/kaiten-wall/internal/defaults"
 	"github.com/Yustinia/kaiten-wall/internal/download"
+	"github.com/Yustinia/kaiten-wall/internal/theming"
 )
 
 func main() {
@@ -52,5 +53,12 @@ func main() {
 	err = daemon.RunAwww(settings.General.UseDaemon, wallLocation, &settings.Awww)
 	if err != nil {
 		log.Fatal(err)
+	}
+
+	if settings.General.UseMatugen {
+		err = theming.ApplyMatugen(wallLocation, &settings.Matugen)
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 }

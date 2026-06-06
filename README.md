@@ -1,6 +1,6 @@
 # kaiten-wall (WIP)
 
-Inspired from the kaiten sushi (conveyer belt sushi); selects a random wallpaper from Wallhaven and applies it as the wallpaper with \*matugen scheme generation
+Inspired from the kaiten sushi (conveyer belt sushi); selects a random wallpaper from Wallhaven and applies it as the wallpaper with matugen scheme generation
 
 Written in Golang.
 
@@ -50,6 +50,8 @@ go build -o kaiten ./cmd
 - Change the default output path for wallpapers
 - Configure how wallpapers transition
 - Change which wallpaper daemon to use
+- Matugen scheme generation
+- Configure matugen schemes and options
 
 ## To Do
 
@@ -57,4 +59,3 @@ go build -o kaiten ./cmd
   - swaybg
   - hyprpaper
 - Expand wallpaper sources
-- Implement matugen color generation

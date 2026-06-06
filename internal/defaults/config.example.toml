@@ -2,6 +2,9 @@
 # Define which wallpaper daemon to use
 use_daemon = "awww"
 
+# Define whether to use matugen integration
+use_matugen = false
+
 # Define where the wallpaper should save
 default_path = "/tmp"
 
@@ -80,3 +83,21 @@ ratios = "16x9"
 # Randomness seed. Accepts alphanumeric values.
 # Only applies when sorting is set to "random".
 seed = "hdks23"
+
+[matugen]
+# Set color scheme:
+# Values: "scheme-tonal-spot", "scheme-content", "scheme-expressive", "scheme-fidelity", "scheme-fruit-salad", "scheme-monochrome", "scheme-neutral", "scheme-rainbow", "scheme-vibrant"
+scheme = "scheme-tonal-spot"
+
+# Set color contrast
+# Value: "1" = maximum, "-1" = minimum, "0" = standard
+# Accepts float values e.g. "1.2", "0.8"
+contrast = "0"
+
+# Set light or dark mode
+# Values: "light" or "dark"
+mode = "dark"
+
+# Recommended not to change unless you know what you are doing
+# 0 = chooses the most dominant color as the source, can vary between 0 to 4 (least dominant) but is not fixed
+source-color-index = "0"
