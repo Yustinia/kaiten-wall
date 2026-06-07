@@ -2,11 +2,8 @@ package theming
 
 import (
 	"fmt"
-	"os"
-	"os/exec"
 
 	"github.com/Yustinia/kaiten-wall/internal/config"
-	"github.com/Yustinia/kaiten-wall/internal/fs"
 )
 
 func buildMatugenFlags(s *config.MatugenModel) []string {
@@ -28,24 +25,14 @@ func buildMatugenFlags(s *config.MatugenModel) []string {
 	return matugenFlags
 }
 
-func ApplyMatugen(wallPath string, daemonSet *config.MatugenModel) error {
-	if err := fs.IsCommandExist("matugen"); err != nil {
-		return err
-	}
-
+func ApplyMatugen(wallPath string, cfg *config.MatugenModel) error {
 	matugenFlags := []string{
 		"image",
 		wallPath,
 	}
-	matugenFlags = append(matugenFlags, buildMatugenFlags(daemonSet)...)
 
-	cmd := exec.Command("matugen", matugenFlags...)
-
-	cmd.Stdout = os.Stdout
-	cmd.Stderr = os.Stderr
-
-	if err := cmd.Run(); err != nil {
-		return fmt.Errorf("failed to run: %w", err)
+	if err := runCommand("matugen", matugenFlags, buildMatugenFlags(cfg)); err != nil {
+		return err
 	}
 
 	return nil
