@@ -6,6 +6,7 @@ type ConfigModel struct {
 	Wallhaven    WallhavenModel `toml:"wallhaven"`
 	Awww         AwwwModel      `toml:"awww"`
 	Matugen      MatugenModel   `toml:"matugen"`
+	Wallust      WallustModel   `toml:"wallust"`
 }
 
 type GeneralModel struct {
