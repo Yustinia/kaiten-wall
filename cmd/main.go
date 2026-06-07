@@ -64,6 +64,8 @@ func main() {
 		switch settings.General.UseThemer {
 		case "matugen":
 			err = theming.ApplyMatugen(wallLocation, &settings.Matugen)
+		case "wallust":
+			err = theming.ApplyWallust(wallLocation, &settings.Wallust)
 		default:
 			log.Fatalf("unknown themer: %q", settings.General.UseThemer)
 		}

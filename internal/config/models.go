@@ -6,6 +6,7 @@ type ConfigModel struct {
 	Wallhaven    WallhavenModel `toml:"wallhaven"`
 	Awww         AwwwModel      `toml:"awww"`
 	Matugen      MatugenModel   `toml:"matugen"`
+	Wallust      WallustModel   `toml:"wallust"`
 }
 
 type GeneralModel struct {
@@ -47,4 +48,14 @@ type MatugenModel struct {
 	Contrast    string `toml:"contrast"`
 	Mode        string `toml:"mode"`
 	SourceIndex string `toml:"source-color-index"`
+}
+
+type WallustModel struct {
+	Backend          string `toml:"backend"`
+	Colorspace       string `toml:"colorspace"`
+	Fallback         string `toml:"fallback"`
+	Palette          string `toml:"palette"`
+	Saturation       string `toml:"saturation"`
+	Threshold        string `toml:"threshold"`
+	DynamicThreshold bool   `toml:"dynamic_threshold"`
 }
