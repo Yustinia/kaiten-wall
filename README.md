@@ -1,6 +1,6 @@
 # kaiten-wall (WIP)
 
-Inspired from the kaiten sushi (conveyer belt sushi); selects a random wallpaper from Wallhaven and applies it as the wallpaper with matugen scheme generation
+Inspired from the kaiten sushi (conveyer belt sushi); selects a random wallpaper from Wallhaven and applies it as the wallpaper with matugen and wallust scheme generation
 
 Written in Golang.
 
@@ -10,6 +10,9 @@ Written in Golang.
 
 - Wallpaper daemon (awww, \*swaybg, \*hyprpaper)
 - Wayland compositor (niri, hyprland, mangowc)
+- Color scheme generators (matugen, wallust)
+
+> By default, kaiten expects matugen; otherwise, you can change it inside the config.
 
 ## Build
 
@@ -64,8 +67,7 @@ Then simply copy or move the executable to `~/.local/bin`
 - Change the default output path for wallpapers
 - Configure how wallpapers transition
 - Change which wallpaper daemon to use
-- Matugen scheme generation
-- Configure matugen schemes and options
+- Choose between Matugen and Wallust to generate colors
 
 ## To Do
 
