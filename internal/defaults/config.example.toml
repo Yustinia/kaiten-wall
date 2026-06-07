@@ -69,6 +69,10 @@ sorting = "random"
 # Values: "desc", "asc"
 order = "desc"
 
+# Controls the fetched wallpapers when they were published. Will work is sorting is set to "toplist"
+# Values: "1d", "3d", "1w", "1M", "3M", "6M", "1y"
+toprange = ""
+
 # Minimum resolution filter. Format: "WIDTHxHEIGHT"
 at_least = "1920x1080"
 

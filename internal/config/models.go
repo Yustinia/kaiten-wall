@@ -37,6 +37,7 @@ type WallhavenModel struct {
 	Purity     string `toml:"purity"`
 	Sorting    string `toml:"sorting"`
 	Order      string `toml:"order"`
+	TopRange   string `toml:"toprange"`
 	AtLeast    string `toml:"at_least"`
 	Resolution string `toml:"resolution"`
 	Ratios     string `toml:"ratios"`

@@ -19,6 +19,7 @@ func buildSearchParams(settings *config.ConfigModel) gopaper.SearchParams {
 	params.Categories = w.Categories
 	params.KeySearch = w.Query
 	params.Order = w.Order
+	params.TopRange = w.TopRange
 	params.Purity = w.Purity
 	params.Ratios = w.Ratios
 	params.Resolution = w.Resolution
