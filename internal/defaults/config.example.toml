@@ -116,14 +116,13 @@ colorspace = "lch"
 fallback = "interpolate"
 
 # Define the color palette to use
-# Prefix dark: dark/16/comp/comp16
-# Prefix ansidark: ansidark/16
-# Prefix harddark: harddark/16/comp/comp16
-# Prefix saliencedark: saliencedark/16/balanced/balanced16/distributed/distributed16/low/low16
-# Prefix light: light/16/comp/comp16
-# Prefix softdark: softdark/16/comp/comp16
-# Prefix softlight: softlight/16/comp/comp16
-# Prefix saliencelight: saliencelight/16/balanced/balanced16/distributed/distributed16/low/low16
+# dark - dark16 - darkcomp - darkcomp16
+# light - light16 - lightcomp - lightcomp16
+# harddark - harddark16 - harddarkcomp - harddarkcomp16
+# softdark - softdark16 - softdarkcomp - softdarkcomp16
+# softlight - softlight16 - softlightcomp - softlightcomp16
+# saliencedark - saliencedarkbalanced - saliencedarkdistributed - saliencedarklow (each has the 16 variations)
+# salienceligh - saliencelightbalanced - saliencelightdistributed - saliencelightlow (each has the 16 variations)
 palette = "dark16"
 
 # Set color saturation
