@@ -33,6 +33,25 @@ func buildWallustFlags(s *config.WallustModel) []string {
 	return wallustFlags
 }
 
+func buildMatugenFlags(s *config.MatugenModel) []string {
+	var matugenFlags []string
+
+	if s.Scheme != "" {
+		matugenFlags = append(matugenFlags, fmt.Sprintf("--type=%s", s.Scheme))
+	}
+	if s.Contrast != "" {
+		matugenFlags = append(matugenFlags, fmt.Sprintf("--contrast=%s", s.Contrast))
+	}
+	if s.Mode != "" {
+		matugenFlags = append(matugenFlags, fmt.Sprintf("--mode=%s", s.Mode))
+	}
+	if s.SourceIndex != "" {
+		matugenFlags = append(matugenFlags, fmt.Sprintf("--source-color-index=%s", s.SourceIndex))
+	}
+
+	return matugenFlags
+}
+
 func ApplyWallust(wallPath string, cfg *config.WallustModel) error {
 	wallustFlags := []string{
 		"run",
@@ -40,6 +59,19 @@ func ApplyWallust(wallPath string, cfg *config.WallustModel) error {
 	}
 
 	if err := runCommand("wallust", wallustFlags, buildWallustFlags(cfg)); err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func ApplyMatugen(wallPath string, cfg *config.MatugenModel) error {
+	matugenFlags := []string{
+		"image",
+		wallPath,
+	}
+
+	if err := runCommand("matugen", matugenFlags, buildMatugenFlags(cfg)); err != nil {
 		return err
 	}
 
