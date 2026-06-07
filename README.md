@@ -1,36 +1,50 @@
 # kaiten-wall (WIP)
 
-Inspired from the kaiten sushi (conveyer belt sushi); selects a random wallpaper from Wallhaven and applies it as the wallpaper with matugen and wallust scheme generation
+Inspired by kaiten sushi (conveyor belt sushi) — fetches a random wallpaper from Wallhaven and applies it, generating a color scheme with either [matugen](https://github.com/InioX/matugen) or [wallust](https://codeberg.org/explosion-mental/wallust).
 
-Written in Golang.
+Written in Go.
 
-> Note: Terms tagged as '\*' are planned to be implemented
+> Items marked with `*` are planned but not yet implemented.
+
+---
 
 ## Dependencies
 
-- Wallpaper daemon (awww, \*swaybg, \*hyprpaper)
-- Wayland compositor (niri, hyprland, mangowc)
-- Color scheme generators (matugen, wallust)
+**Wallpaper Daemons**
 
-> By default, kaiten expects matugen; otherwise, you can change it inside the config.
+- [awww](https://codeberg.org/LGFae/awww)
+- \*swaybg
+- \*hyprpaper
 
-## Build
+**Wayland Compositors**
 
-Ensure that you have the following:
+- niri
+- hyprland
+- mangowc
+
+**Color Scheme Generators**
+
+- [matugen](https://github.com/InioX/matugen) (default)
+- [wallust](https://codeberg.org/explosion-mental/wallust)
+
+---
+
+## Building
+
+Make sure dependencies are available:
 
 ```bash
-# wallhaven API wrapper
-go get github.com/Yustinia/gopaper
-
-# toml parsing
-go get github.com/BurntSushi/toml
+go mod tidy
 ```
 
-Otherwise, simply do `go mod tidy` to automatically handle build dependencies
+Or manually:
 
-### Just
+```bash
+go get github.com/Yustinia/gopaper  # Wallhaven API wrapper
+go get github.com/BurntSushi/toml   # TOML parsing
+```
 
-Ensure that you have `just` installed through your package manager
+### With Just
 
 ```bash
 just build
@@ -42,13 +56,13 @@ just build
 go build -o kaiten ./cmd
 ```
 
-## Install
+---
 
-You can either install manually or using `just`
+## Installing
 
-### Just
+### With Just
 
-This builds and copies the executable to `~/.local/bin`
+Builds and copies the binary to `~/.local/bin`:
 
 ```bash
 just install
@@ -56,22 +70,27 @@ just install
 
 ### Manual
 
-First build the executable, reference the build chapter
+Build first (see above), then:
 
-Then simply copy or move the executable to `~/.local/bin`
+```bash
+cp kaiten ~/.local/bin/
+```
+
+---
 
 ## Features
 
-- Fetch a random wallpaper and apply it
-- Filter wallpapers through the config toml file
-- Change the default output path for wallpapers
-- Configure how wallpapers transition
-- Change which wallpaper daemon to use
-- Choose between Matugen and Wallust to generate colors
+- Fetch and apply a random wallpaper from Wallhaven
+- Filter wallpapers via config
+- Configure wallpaper transition behavior
+- Set a custom wallpaper output path
+- Choose your wallpaper daemon
+- Choose between matugen and wallust for color generation
+
+---
 
 ## To Do
 
-- Expand wallpaper daemon selection
-  - swaybg
-  - hyprpaper
-- Expand wallpaper sources
+- [ ] swaybg support
+- [ ] hyprpaper support
+- [ ] Additional wallpaper sources
