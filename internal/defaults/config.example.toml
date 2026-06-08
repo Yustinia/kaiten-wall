@@ -88,6 +88,12 @@ ratios = "16x9,21x9,16x10,32x9,48x9"
 # Only applies when sorting is set to "random".
 seed = ""
 
+# Set the page in which kaiten will retrieve results at
+# Values: "page:5" — retrieve wallpapers from a specific page, typically 24 wallpaper to pool for random
+# Values: "pages:3-5" — retrieve wallpapers from multiple pages to give a larger pool for random
+# Values: "count:40" — how many to retrieve wallpapers to pool random
+fetch = "page:3"
+
 [matugen]
 # Set color scheme:
 # Values: "scheme-tonal-spot", "scheme-content", "scheme-expressive", "scheme-fidelity", "scheme-fruit-salad", "scheme-monochrome", "scheme-neutral", "scheme-rainbow", "scheme-vibrant"

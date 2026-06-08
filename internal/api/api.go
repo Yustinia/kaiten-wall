@@ -4,12 +4,22 @@ import (
 	"errors"
 	"fmt"
 	"math/rand"
+	"strings"
 
 	"github.com/Yustinia/gopaper"
 	"github.com/Yustinia/kaiten-wall/internal/config"
 )
 
+type fetchMode struct {
+	mode  string
+	start string
+	end   string
+}
+
 var ErrNoWallpapers = errors.New("no wallpapers found")
+
+var ErrModeFetch = errors.New("failed to parse fetch modes")
+var ErrFetchParts = errors.New("invalid value for fetch")
 
 func buildSearchParams(settings *config.ConfigModel) gopaper.SearchParams {
 	w := settings.Wallhaven
@@ -27,6 +37,29 @@ func buildSearchParams(settings *config.ConfigModel) gopaper.SearchParams {
 	params.Sorting = w.Sorting
 
 	return params
+}
+
+func parseFetchMode(fetch string) (fetchMode, error) {
+	parts := strings.SplitN(fetch, ":", 2)
+
+	if len(parts) != 2 {
+		return fetchMode{}, ErrFetchParts
+	}
+
+	mode := parts[0]
+	value := parts[1]
+
+	switch mode {
+	case "page":
+		return fetchMode{mode: mode, start: value}, nil
+	case "pages":
+		page := strings.SplitN(value, "-", 2)
+		return fetchMode{mode: mode, start: page[0], end: page[1]}, nil
+	case "count":
+		return fetchMode{mode: mode, start: value}, nil
+	default:
+		return fetchMode{}, ErrModeFetch
+	}
 }
 
 func FetchWallpapers(settings *config.ConfigModel) (gopaper.SearchResponse, error) {
