@@ -42,6 +42,7 @@ type WallhavenModel struct {
 	Resolution string `toml:"resolution"`
 	Ratios     string `toml:"ratios"`
 	Seed       string `toml:"seed"`
+	Fetch      string `toml:"fetch"`
 }
 
 type MatugenModel struct {
