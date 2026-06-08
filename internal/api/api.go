@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"math/rand"
+	"strconv"
 	"strings"
 
 	"github.com/Yustinia/gopaper"
@@ -12,8 +13,8 @@ import (
 
 type fetchMode struct {
 	mode  string
-	start string
-	end   string
+	start int
+	end   int
 }
 
 var ErrNoWallpapers = errors.New("no wallpapers found")
@@ -51,37 +52,93 @@ func parseFetchMode(fetch string) (fetchMode, error) {
 
 	switch mode {
 	case "page":
-		return fetchMode{mode: mode, start: value}, nil
+		startPage, err := strconv.Atoi(value)
+		if err != nil {
+			return fetchMode{}, fmt.Errorf("failed to parse page: %w", err)
+		}
+		return fetchMode{mode: mode, start: startPage}, nil
+
 	case "pages":
 		page := strings.SplitN(value, "-", 2)
-		return fetchMode{mode: mode, start: page[0], end: page[1]}, nil
+		startPage, err := strconv.Atoi(page[0])
+		if err != nil {
+			return fetchMode{}, fmt.Errorf("failed to parse page: %w", err)
+		}
+		endPage, err := strconv.Atoi(page[1])
+		if err != nil {
+			return fetchMode{}, fmt.Errorf("failed to parse page: %w", err)
+		}
+		return fetchMode{mode: mode, start: startPage, end: endPage}, nil
+
 	case "count":
-		return fetchMode{mode: mode, start: value}, nil
+		wallCount, err := strconv.Atoi(value)
+		if err != nil {
+			return fetchMode{}, fmt.Errorf("failed to parse wall count: %w", err)
+		}
+		return fetchMode{mode: mode, start: wallCount}, nil
+
 	default:
 		return fetchMode{}, ErrModeFetch
 	}
 }
 
-func FetchWallpapers(settings *config.ConfigModel) (gopaper.SearchResponse, error) {
+func FetchWallpapers(settings *config.ConfigModel) ([]gopaper.Wallpaper, error) {
 	client := gopaper.NewClientWithKey(settings.ClientParams.APIKey)
 
 	params := buildSearchParams(settings)
-	result, err := client.Search(params)
-	if err != nil {
-		return gopaper.SearchResponse{}, fmt.Errorf("something went wrong: %w", err)
+
+	if settings.Wallhaven.Fetch == "" {
+		result, err := client.Search(params)
+		if err != nil {
+			return []gopaper.Wallpaper{}, err
+		}
+
+		return result.Wallpapers, nil
 	}
 
-	return result, nil
+	modeFetch, err := parseFetchMode(settings.Wallhaven.Fetch)
+	if err != nil {
+		return []gopaper.Wallpaper{}, err
+	}
+
+	switch modeFetch.mode {
+	case "page":
+		params.Page = modeFetch.start
+
+		result, err := client.Search(params)
+		if err != nil {
+			return []gopaper.Wallpaper{}, err
+		}
+		return result.Wallpapers, nil
+
+	case "pages":
+		result, err := client.FetchPages(&params, modeFetch.start, modeFetch.end)
+
+		if err != nil {
+			return []gopaper.Wallpaper{}, err
+		}
+		return result, nil
+
+	case "count":
+		result, err := client.FetchWallpaperCount(&params, modeFetch.start)
+
+		if err != nil {
+			return []gopaper.Wallpaper{}, err
+		}
+		return result, nil
+	default:
+		return []gopaper.Wallpaper{}, ErrModeFetch
+	}
 }
 
-func SelectRandomWall(result gopaper.SearchResponse) (string, error) {
-	wallCount := len(result.Wallpapers)
+func SelectRandomWall(wallSlice []gopaper.Wallpaper) (string, error) {
+	wallCount := len(wallSlice)
 	if wallCount == 0 {
 		return "", ErrNoWallpapers
 	}
 
 	randIndex := rand.Intn(wallCount)
-	selectedWall := result.Wallpapers[randIndex]
+	selectedWall := wallSlice[randIndex]
 
 	return selectedWall.Path, nil
 }

@@ -34,6 +34,8 @@ func TestMain(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	t.Logf("Count: %d", len(result))
+
 	selectedWall, err := api.SelectRandomWall(result)
 	if err != nil {
 		t.Fatal(err)
