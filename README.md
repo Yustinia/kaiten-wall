@@ -76,6 +76,17 @@ Build first (see above), then:
 cp kaiten ~/.local/bin/
 ```
 
+### Makepkg
+
+Ensure you have `git` and `base-devel` installed:
+
+```bash
+pacman -S --needed git base-devel
+git clone https://aur.archlinux.org/kaiten-wall-bin.git
+cd kaiten-wall-bin
+makepkg -si
+```
+
 ---
 
 ## Features
