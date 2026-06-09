@@ -90,7 +90,7 @@ func FetchWallpapers(settings *config.ConfigModel) ([]gopaper.Wallpaper, error) 
 	if settings.Wallhaven.Fetch == "" {
 		result, err := client.Search(params)
 		if err != nil {
-			return []gopaper.Wallpaper{}, err
+			return nil, err
 		}
 
 		return result.Wallpapers, nil
@@ -98,24 +98,23 @@ func FetchWallpapers(settings *config.ConfigModel) ([]gopaper.Wallpaper, error) 
 
 	modeFetch, err := parseFetchMode(settings.Wallhaven.Fetch)
 	if err != nil {
-		return []gopaper.Wallpaper{}, err
+		return nil, err
 	}
 
 	switch modeFetch.mode {
 	case "page":
-		params.Page = modeFetch.start
+		result, err := client.FetchPage(&params, modeFetch.start)
 
-		result, err := client.Search(params)
 		if err != nil {
-			return []gopaper.Wallpaper{}, err
+			return nil, err
 		}
-		return result.Wallpapers, nil
+		return result, nil
 
 	case "pages":
 		result, err := client.FetchPages(&params, modeFetch.start, modeFetch.end)
 
 		if err != nil {
-			return []gopaper.Wallpaper{}, err
+			return nil, err
 		}
 		return result, nil
 
@@ -123,11 +122,11 @@ func FetchWallpapers(settings *config.ConfigModel) ([]gopaper.Wallpaper, error) 
 		result, err := client.FetchWallpaperCount(&params, modeFetch.start)
 
 		if err != nil {
-			return []gopaper.Wallpaper{}, err
+			return nil, err
 		}
 		return result, nil
 	default:
-		return []gopaper.Wallpaper{}, ErrModeFetch
+		return nil, ErrModeFetch
 	}
 }
 

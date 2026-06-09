@@ -2,3 +2,5 @@ github.com/BurntSushi/toml v1.6.0 h1:dRaEfpa2VI55EwlIW72hMRHdWouJeRF7TPYhI+AUQjk
 github.com/BurntSushi/toml v1.6.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
 github.com/Yustinia/gopaper v0.9.0 h1:EQ/0/x8H2+LylocCSPLee7fiaMxIAK3t4gShPk6IGu4=
 github.com/Yustinia/gopaper v0.9.0/go.mod h1:ANpmplp1tS/kz9R96mI5VIdVNuFQ7nLklXygDytnmgA=
+github.com/Yustinia/gopaper v0.10.0 h1:b6dtOAdVZMGav7NLOCn5YRT0rcpfN6qceZlCnUNU0c8=
+github.com/Yustinia/gopaper v0.10.0/go.mod h1:ANpmplp1tS/kz9R96mI5VIdVNuFQ7nLklXygDytnmgA=
