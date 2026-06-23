@@ -114,7 +114,7 @@ source-color-index = "0"
 
 [wallust]
 # Define how to extract the colors from the image
-# Values: "full", "resized", "wal", "thumb", "thumb", "fastresize", "kmeans"
+# Values: "full", "resized", "wal", "thumb", "fastresize", "kmeans"
 backend = "full"
 
 # Define which color space of colors
@@ -132,7 +132,7 @@ fallback = "interpolate"
 # softdark - softdark16 - softdarkcomp - softdarkcomp16
 # softlight - softlight16 - softlightcomp - softlightcomp16
 # saliencedark - saliencedarkbalanced - saliencedarkdistributed - saliencedarklow (each has the 16 variations)
-# salienceligh - saliencelightbalanced - saliencelightdistributed - saliencelightlow (each has the 16 variations)
+# saliencelight - saliencelightbalanced - saliencelightdistributed - saliencelightlow (each has the 16 variations)
 palette = "dark16"
 
 # Set color saturation
