@@ -28,7 +28,7 @@ type AwwwModel struct {
 }
 
 type Client struct {
-	APIKey string `toml:"api_key"`
+	APIKey string `toml:"wallhaven_api"`
 }
 
 type WallhavenModel struct {
