@@ -1,4 +1,4 @@
-# kaiten-wall (WIP)
+# kaiten-wall
 
 Inspired by kaiten sushi (conveyor belt sushi) — fetches a random wallpaper from Wallhaven and applies it, generating a color scheme with either [matugen](https://github.com/InioX/matugen) or [wallust](https://codeberg.org/explosion-mental/wallust).
 
@@ -74,17 +74,6 @@ Build first (see above), then:
 
 ```bash
 cp kaiten ~/.local/bin/
-```
-
-### Makepkg
-
-Ensure you have `git` and `base-devel` installed:
-
-```bash
-pacman -S --needed git base-devel
-git clone https://aur.archlinux.org/kaiten-wall-bin.git
-cd kaiten-wall-bin
-makepkg -si
 ```
 
 ---
