@@ -62,7 +62,7 @@ categories = "010"
 # Filters results by content rating. Each digit is a toggle (1=on, 0=off).
 # Position: sfw | sketchy | nsfw
 # Note: nsfw requires a valid API key in [client].
-purity = "110"
+purity = "100"
 
 # Controls how results are sorted.
 # Values: "date_added", "relevance", "random", "views", "favorites", "toplist"
@@ -81,11 +81,11 @@ at_least = "1920x1080"
 
 # Filters by exact resolution. Format: "WIDTHxHEIGHT"
 # Accepts comma-separated values or one value
-resolution = "1920x1080,2560x1440,3840x2160,1920x1200,2560x1600,3840x2400,2560x1080,2440x1440,3840x1600"
+resolution = ""
 
 # Filters by aspect ratio. Accepts comma-separated values.
-# Example: "16x9,16x10"
-ratios = "16x9,21x9,16x10,32x9,48x9"
+# Example: "16x9,16x10" or "landscape" for all ratios
+ratios = "landscape"
 
 # Randomness seed. Accepts alphanumeric values.
 # Only applies when sorting is set to "random".
