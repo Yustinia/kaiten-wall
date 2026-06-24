@@ -1,8 +1,10 @@
 [general]
 # Define which wallpaper daemon to use
+# Available: "awww"
 use_daemon = "awww"
 
 # Define whether to use any theme generator
+# Available: "matugen" and "wallust"
 use_themer = "matugen"
 
 # Define where the wallpaper should save
@@ -26,29 +28,30 @@ transition_step = "2"
 # Does not work with transition_type "simple"
 transition_duration = "3"
 
-# This should be self-explanatory
+# Transition animation framerate. Higher values are smoother but more CPU-intensive
 transition_fps = "60"
 
-# Used for transition_type "wipe" and "wave", controlling the angle
+# Used for transition_type "wipe" and "wave" to control the angle
 transition_angle = "45"
 
-# Used for transition_type "grow" and "outer", controlling the center of the circle
+# Used for transition_type "grow" and "outer" for controlling the center of the circle
 # Values in Percent: "0.5,0.5" is 50% of width and 50% of height
 # Values in Pixels: "200,400" is 200px from the left and 400px from the bottom
 # Values in Alias: "center", "top", "left", "right", "bottom", "top-left", "top-right", "bottom-left", "bottom-right"
 transition_pos = "center"
 
-# Used for "fade" to control animation
+# Used for "fade" to control bezier animation curve
 transition_bezier = "0.54,0,0.34,0.99"
 
 # Used for "wave" to control the width and height of the wave
 transition_wave = "20,20"
 
 [client]
+# Provide a valid api key to allow mature wallpaper fetching
 wallhaven_api = "api_key"
 
 [wallhaven]
-# Filters results by search term. Leave empty for no filter.
+# Filters results by search term otherwise leave empty
 query = ""
 
 # Filters results by category. Each digit is a toggle (1=on, 0=off).
@@ -88,10 +91,11 @@ ratios = "16x9,21x9,16x10,32x9,48x9"
 # Only applies when sorting is set to "random".
 seed = ""
 
-# Set the page in which kaiten will retrieve results at
-# Values: "page:5" — retrieve wallpapers from a specific page, typically 24 wallpaper to pool for random
-# Values: "pages:3-5" — retrieve wallpapers from multiple pages to give a larger pool for random
-# Values: "count:40" — how many to retrieve wallpapers to pool random
+# Wallpaper pool source
+# Values: "page:5" — fetch specifically page 5 (typically 24 wallpapers)
+# Values: "pages:3-5" — fetch pages 3 through 5 (up to 72 wallpapers)
+# Values: "count:40" — fetch until 40 wallpapers are colllected
+# Note: the Wallhaven API is rate-limited to 45 requests/minute
 fetch = "page:3"
 
 [matugen]
@@ -108,8 +112,8 @@ contrast = "0"
 # Values: "light" or "dark"
 mode = "light"
 
-# Recommended not to change unless you know what you are doing
-# 0 = chooses the most dominant color as the source, can vary between 0 to 4 (least dominant) but is not fixed
+# Recommended not to change for safety
+# 0 = chooses the most dominant color as the source, can vary between 0 to 4 (least dominant) depending on the source
 source-color-index = "0"
 
 [wallust]
