@@ -1,6 +1,6 @@
 # kaiten-wall
 
-Inspired by kaiten sushi (conveyor belt sushi) — fetches a random wallpaper from Wallhaven and applies it, generating a color scheme with either [matugen](https://github.com/InioX/matugen) or [wallust](https://codeberg.org/explosion-mental/wallust).
+Ever get tired of staring at the same wallpaper? kaiten-wall keeps things fresh — like a conveyor belt of wallpapers pulled straight from Wallhaven, applied automatically with a generated color scheme.
 
 Written in Go.
 
@@ -70,11 +70,23 @@ just install
 
 ### Manual
 
-Build first (see above), then:
+Build first, then:
 
 ```bash
 cp kaiten ~/.local/bin/
 ```
+
+---
+
+## Usage
+
+Run `kaiten` once after installing. It will generate a base configuration at:
+
+```bash
+~/.config/kaiten-wall/config.toml
+```
+
+From there, run it again to fetch and apply a random wallpaper. The config is self-documenting — each field includes a comment explaining what it does and what values are accepted.
 
 ---
 
