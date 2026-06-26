@@ -21,14 +21,7 @@
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             go
-
-            # formatter:
-            # gofumpt
-
-            # linter:
             golangci-lint
-
-            # language server:
             gopls
           ];
         };
