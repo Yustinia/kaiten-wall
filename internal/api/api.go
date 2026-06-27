@@ -30,12 +30,17 @@ func buildSearchParams(settings *config.ConfigModel) gopaper.SearchParams {
 	params.Categories = w.Categories
 	params.KeySearch = w.Query
 	params.Order = w.Order
-	params.TopRange = w.TopRange
 	params.Purity = w.Purity
 	params.Ratios = w.Ratios
 	params.Resolution = w.Resolution
-	params.Seed = w.Seed
 	params.Sorting = w.Sorting
+
+	switch params.Sorting {
+	case "toplist":
+		params.TopRange = w.TopRange
+	case "random":
+		params.Seed = w.Seed
+	}
 
 	return params
 }
