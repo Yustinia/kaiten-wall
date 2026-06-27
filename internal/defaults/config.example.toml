@@ -147,6 +147,6 @@ saturation = "1"
 # Values: 1 - 100
 threshold = ""
 
-#  Enable/disable dynamic threshold
-# Doesn't work with manual threshold setting
+# Enable/disable dynamic threshold
+# Dynamic threshold takes precedence over manual threshold
 dynamic_threshold = true
