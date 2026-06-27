@@ -60,6 +60,12 @@ go build -o kaiten ./cmd
 
 ## Installing
 
+### Makepkg
+
+```bash
+makpkg -si
+```
+
 ### With Just
 
 Builds and copies the binary to `~/.local/bin`:
