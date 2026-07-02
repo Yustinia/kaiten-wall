@@ -31,7 +31,7 @@ var (
 
 var rootCmd = &cobra.Command{
 	Use:   "kaiten",
-	Short: "Random wallpaper from wallhaven",
+	Short: "A simple random wallpaper switcher for wayland that fetches from wallhaven and applies it",
 	Run: func(cdm *cobra.Command, args []string) {
 		homeDir, err := os.UserHomeDir()
 		if err != nil {
