@@ -31,48 +31,19 @@ Written in Go.
 
 ## Building
 
-Make sure dependencies are available:
-
-```bash
-go mod tidy
-```
-
-Or manually:
-
-```bash
-go get github.com/Yustinia/gopaper  # Wallhaven API wrapper
-go get github.com/BurntSushi/toml   # TOML parsing
-```
-
-### With Just
-
-```bash
-just build
-```
-
 ### Manual
 
 ```bash
 go build -o kaiten ./cmd
 ```
 
+### Make
+
+To build with `make`, just run `make`.
+
 ---
 
 ## Installing
-
-### Makepkg
-
-```bash
-makpkg -si
-```
-
-### With Just
-
-Builds and copies the binary to `~/.local/bin`:
-
-```bash
-just install
-```
 
 ### Manual
 
@@ -81,6 +52,14 @@ Build first, then:
 ```bash
 cp kaiten ~/.local/bin/
 ```
+
+### Make
+
+```bash
+make install
+```
+
+This automatically builds and copies `kaiten` to `~/.local/bin/kaiten`
 
 ---
 
@@ -91,6 +70,8 @@ Run `kaiten` once after installing. It will generate a base configuration at:
 ```bash
 ~/.config/kaiten-wall/config.toml
 ```
+
+Otherwise, run `kaiten --help` to show usable flags.
 
 From there, run it again to fetch and apply a random wallpaper. The config is self-documenting — each field includes a comment explaining what it does and what values are accepted.
 
