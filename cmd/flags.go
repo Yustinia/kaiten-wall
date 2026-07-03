@@ -56,20 +56,28 @@ var rootCmd = &cobra.Command{
 
 		applyFlagOverrides(&settings)
 
+		log.Println("fetching wallpapers...")
 		result, err := api.FetchWallpapers(&settings)
 		if err != nil {
 			log.Fatal(err)
 		}
+		log.Println("done fetching")
+
+		log.Println("randomly selecting a wallpaper...")
 		selectedWall, err := api.SelectRandomWall(result)
 		if err != nil {
 			log.Fatal(err)
 		}
+		log.Printf("selected: %s\n", selectedWall)
 
+		log.Printf("downloading %s...\n", selectedWall)
 		wallLocation, err := download.DownloadWall(selectedWall, settings.General.DefaultPath)
 		if err != nil {
 			log.Fatal(err)
 		}
+		log.Printf("downloaded wallpaper to %s\n", wallLocation)
 
+		log.Printf("using %s to apply wallpaper...\n", settings.General.UseDaemon)
 		switch settings.General.UseDaemon {
 		case "awww":
 			err = daemon.RunAwww(wallLocation, &settings.Awww)
@@ -79,8 +87,11 @@ var rootCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal(err)
 		}
+		log.Printf("applied wallpaper using %s\n", settings.General.UseDaemon)
 
 		if settings.General.UseThemer != "" {
+			log.Printf("using %s to generate theme...\n", settings.General.UseThemer)
+
 			switch settings.General.UseThemer {
 			case "matugen":
 				err = theming.ApplyMatugen(wallLocation, &settings.Matugen)
@@ -92,6 +103,8 @@ var rootCmd = &cobra.Command{
 			if err != nil {
 				log.Fatal(err)
 			}
+
+			log.Printf("applied color schemes from %s\n", settings.General.UseThemer)
 		}
 	},
 }
