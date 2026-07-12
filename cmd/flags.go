@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/Yustinia/kaiten-wall/internal/api"
 	"github.com/Yustinia/kaiten-wall/internal/config"
@@ -56,28 +57,27 @@ var rootCmd = &cobra.Command{
 
 		applyFlagOverrides(&settings)
 
-		log.Println("fetching wallpapers...")
+		start := time.Now()
 		result, err := api.FetchWallpapers(&settings)
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Println("done fetching")
+		log.Printf("fetched %d wallpapers in %s\n", len(result), time.Since(start))
 
-		log.Println("randomly selecting a wallpaper...")
 		selectedWall, err := api.SelectRandomWall(result)
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Printf("selected: %s\n", selectedWall)
+		log.Printf("selected wallpaper: %s\n", selectedWall)
 
-		log.Printf("downloading %s...\n", selectedWall)
+		start = time.Now()
 		wallLocation, err := download.DownloadWall(selectedWall, settings.General.DefaultPath)
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Printf("downloaded wallpaper to %s\n", wallLocation)
+		log.Printf("downloaded wallpaper to %s in %s\n", wallLocation, time.Since(start))
 
-		log.Printf("using %s to apply wallpaper...\n", settings.General.UseDaemon)
+		start = time.Now()
 		switch settings.General.UseDaemon {
 		case "awww":
 			err = daemon.RunAwww(wallLocation, &settings.Awww)
@@ -87,10 +87,10 @@ var rootCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Printf("applied wallpaper using %s\n", settings.General.UseDaemon)
+		log.Printf("applied wallpaper using %s in %s\n", settings.General.UseDaemon, time.Since(start))
 
 		if settings.General.UseThemer != "" {
-			log.Printf("using %s to generate theme...\n", settings.General.UseThemer)
+			start = time.Now()
 
 			switch settings.General.UseThemer {
 			case "matugen":
@@ -104,7 +104,7 @@ var rootCmd = &cobra.Command{
 				log.Fatal(err)
 			}
 
-			log.Printf("applied color schemes from %s\n", settings.General.UseThemer)
+			log.Printf("applied color schemes from %s in %s\n", settings.General.UseThemer, time.Since(start))
 		}
 	},
 }
