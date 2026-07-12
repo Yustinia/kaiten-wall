@@ -62,7 +62,7 @@ var rootCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Printf("fetched %d wallpapers in %s\n", len(result), time.Since(start))
+		log.Printf("fetched %d wallpapers in %s\n", len(result), time.Since(start).Round(time.Millisecond))
 
 		selectedWall, err := api.SelectRandomWall(result)
 		if err != nil {
@@ -75,7 +75,7 @@ var rootCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Printf("downloaded wallpaper to %s in %s\n", wallLocation, time.Since(start))
+		log.Printf("downloaded wallpaper to %s in %s\n", wallLocation, time.Since(start).Round(time.Millisecond))
 
 		start = time.Now()
 		switch settings.General.UseDaemon {
@@ -87,7 +87,7 @@ var rootCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal(err)
 		}
-		log.Printf("applied wallpaper using %s in %s\n", settings.General.UseDaemon, time.Since(start))
+		log.Printf("applied wallpaper using %s in %s\n", settings.General.UseDaemon, time.Since(start).Round(time.Millisecond))
 
 		if settings.General.UseThemer != "" {
 			start = time.Now()
@@ -104,7 +104,7 @@ var rootCmd = &cobra.Command{
 				log.Fatal(err)
 			}
 
-			log.Printf("applied color schemes from %s in %s\n", settings.General.UseThemer, time.Since(start))
+			log.Printf("applied color schemes from %s in %s\n", settings.General.UseThemer, time.Since(start).Round(time.Millisecond))
 		}
 	},
 }
