@@ -56,6 +56,7 @@ func ApplyWallust(wallPath string, cfg *config.WallustModel) error {
 	wallustFlags := []string{
 		"run",
 		wallPath,
+		"--quiet",
 	}
 
 	if err := runCommand("wallust", wallustFlags, buildWallustFlags(cfg)); err != nil {
