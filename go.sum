@@ -2,6 +2,8 @@ github.com/BurntSushi/toml v1.6.0 h1:dRaEfpa2VI55EwlIW72hMRHdWouJeRF7TPYhI+AUQjk
 github.com/BurntSushi/toml v1.6.0/go.mod h1:ukJfTF/6rtPPRCnwkur4qwRxa8vTRFBF0uk2lLoLwho=
 github.com/Yustinia/gopaper v0.10.0 h1:b6dtOAdVZMGav7NLOCn5YRT0rcpfN6qceZlCnUNU0c8=
 github.com/Yustinia/gopaper v0.10.0/go.mod h1:ANpmplp1tS/kz9R96mI5VIdVNuFQ7nLklXygDytnmgA=
+github.com/Yustinia/gopaper v0.11.0 h1:EN9ILXgNi0wk2wCbe31oZIEw6JcDdHg9pMLZuAL23do=
+github.com/Yustinia/gopaper v0.11.0/go.mod h1:/Ngsa2EWWM8YwfGRpI8Bsd4I4w/csbaUKIz7CPCnXSo=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
 github.com/inconshreveable/mousetrap v1.1.0 h1:wN+x4NVGpMsO7ErUn/mUI3vEoE6Jt13X2s0bqwp9tc8=
 github.com/inconshreveable/mousetrap v1.1.0/go.mod h1:vpF70FUmC8bwa3OWnCshd2FqLfsEA9PFc4w1p2J65bw=
