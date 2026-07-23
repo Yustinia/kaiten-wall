@@ -88,7 +88,7 @@ func parseFetchMode(fetch string) (fetchMode, error) {
 }
 
 func FetchWallpapers(settings *config.ConfigModel) ([]gopaper.Wallpaper, error) {
-	client := gopaper.NewClientWithKey(settings.ClientParams.APIKey)
+	client := gopaper.NewClient(settings.ClientParams.APIKey)
 
 	params := buildSearchParams(settings)
 
