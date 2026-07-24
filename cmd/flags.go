@@ -78,19 +78,24 @@ var rootCmd = &cobra.Command{
 			}
 
 			for {
-				log.Println("select another wallpaper? (Y/N)")
+				log.Print("select another wallpaper? (Y/N)")
 
-				if scanner.Scan() {
-					userInput := strings.TrimSpace(strings.ToLower(scanner.Text()))
-
-					switch userInput {
-					case "y", "yes":
-						continue WallpaperLoop
-					case "n", "no":
-						break WallpaperLoop
-					default:
-						log.Printf("%q is invalid, please try again", userInput)
+				if !scanner.Scan() {
+					if err := scanner.Err(); err != nil {
+						log.Fatalf("error reading input %v\n", err)
 					}
+					break WallpaperLoop
+				}
+
+				userInput := strings.TrimSpace(strings.ToLower(scanner.Text()))
+
+				switch userInput {
+				case "y", "yes":
+					continue WallpaperLoop
+				case "n", "no":
+					break WallpaperLoop
+				default:
+					log.Printf("%q is invalid, please try again", userInput)
 				}
 			}
 		}
