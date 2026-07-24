@@ -1,10 +1,12 @@
 package main
 
 import (
+	"bufio"
 	"errors"
 	"log"
 	"os"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/Yustinia/kaiten-wall/internal/api"
@@ -64,47 +66,64 @@ var rootCmd = &cobra.Command{
 		}
 		log.Printf("fetched %d wallpapers in %s\n", len(result), time.Since(start).Round(time.Millisecond))
 
-		selectedWall, err := api.SelectRandomWall(result)
-		if err != nil {
-			log.Fatal(err)
-		}
-		log.Printf("selected wallpaper: %s\n", selectedWall)
+		for {
+			selectedWall, err := api.SelectRandomWall(result)
+			if err != nil {
+				log.Fatal(err)
+			}
+			log.Printf("selected wallpaper: %s\n", selectedWall)
 
-		start = time.Now()
-		wallLocation, err := download.DownloadWall(selectedWall, settings.General.DefaultPath)
-		if err != nil {
-			log.Fatal(err)
-		}
-		log.Printf("downloaded wallpaper to %s in %s\n", wallLocation, time.Since(start).Round(time.Millisecond))
-
-		start = time.Now()
-		switch settings.General.UseDaemon {
-		case "awww":
-			err = daemon.RunAwww(wallLocation, &settings.Awww)
-		default:
-			log.Fatalf("unknown daemon: %q", settings.General.UseDaemon)
-		}
-		if err != nil {
-			log.Fatal(err)
-		}
-		log.Printf("applied wallpaper using %s in %s\n", settings.General.UseDaemon, time.Since(start).Round(time.Millisecond))
-
-		if settings.General.UseThemer != "" {
 			start = time.Now()
+			wallLocation, err := download.DownloadWall(selectedWall, settings.General.DefaultPath)
+			if err != nil {
+				log.Fatal(err)
+			}
+			log.Printf("downloaded wallpaper to %s in %s\n", wallLocation, time.Since(start).Round(time.Millisecond))
 
-			switch settings.General.UseThemer {
-			case "matugen":
-				err = theming.ApplyMatugen(wallLocation, &settings.Matugen)
-			case "wallust":
-				err = theming.ApplyWallust(wallLocation, &settings.Wallust)
+			start = time.Now()
+			switch settings.General.UseDaemon {
+			case "awww":
+				err = daemon.RunAwww(wallLocation, &settings.Awww)
 			default:
-				log.Fatalf("unknown themer: %q", settings.General.UseThemer)
+				log.Fatalf("unknown daemon: %q", settings.General.UseDaemon)
 			}
 			if err != nil {
 				log.Fatal(err)
 			}
+			log.Printf("applied wallpaper using %s in %s\n", settings.General.UseDaemon, time.Since(start).Round(time.Millisecond))
 
-			log.Printf("applied color schemes from %s in %s\n", settings.General.UseThemer, time.Since(start).Round(time.Millisecond))
+			if settings.General.UseThemer != "" {
+				start = time.Now()
+
+				switch settings.General.UseThemer {
+				case "matugen":
+					err = theming.ApplyMatugen(wallLocation, &settings.Matugen)
+				case "wallust":
+					err = theming.ApplyWallust(wallLocation, &settings.Wallust)
+				default:
+					log.Fatalf("unknown themer: %q", settings.General.UseThemer)
+				}
+				if err != nil {
+					log.Fatal(err)
+				}
+
+				log.Printf("applied color schemes from %s in %s\n", settings.General.UseThemer, time.Since(start).Round(time.Millisecond))
+			}
+
+			scanner := bufio.NewScanner(os.Stdin)
+
+			if scanner.Scan() {
+				userInput := strings.TrimSpace(strings.ToLower(scanner.Text()))
+
+				switch userInput {
+				case "y", "yes":
+					continue
+				case "n", "no":
+					break
+				default:
+					log.Printf("%s is invalid, please try again", userInput)
+				}
+			}
 		}
 	},
 }
