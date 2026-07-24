@@ -34,8 +34,6 @@ var (
 	fetchFlag      string
 )
 
-var ErrUnknownDaemon = errors.New()
-
 var rootCmd = &cobra.Command{
 	Use:   "kaiten",
 	Short: "A simple random wallpaper switcher for wayland that fetches from wallhaven and applies it",
